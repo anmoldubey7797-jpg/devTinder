@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { BASE_URL } from '../utils/constants'
 import { useDispatch, useSelector } from 'react-redux'
 import { addConnections } from '../utils/connectionSlice'
+import { Link } from 'react-router-dom'
 
 const Connections = () => {
   const connections = useSelector((store) => store.connections) || [];
@@ -41,7 +42,7 @@ const Connections = () => {
         Connections
       </h1>
 
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 ">
         {connections.map((c) => (
           <div
             key={c._id}
@@ -68,6 +69,9 @@ const Connections = () => {
                 Gender: {c.gender}
               </p>
             </div>
+           <Link to={`/chat/${c._id}`}> <button className=" flex ml-auto bg-pink-400 text-white px-6 py-2 rounded hover:bg-yellow-300 transition-colors">
+              Chat
+            </button> </Link>
           </div>
         ))}
       </div>
