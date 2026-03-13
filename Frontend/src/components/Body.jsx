@@ -16,19 +16,22 @@ const Body = () => {
 
   const userData = useSelector((store) => store.user);
 
-  const fetchUser = async () => {
-  try {
+  useEffect(() => {
+  if (!userData) {
+    fetchUser();
+  }
+}, []);
 
+const fetchUser = async () => {
+  try {
     const res = await axios.get(BASE_URL + "/profile/view", {
       withCredentials: true
     });
 
-    console.log("PROFILE RESPONSE:", res.data);
-
     dispatch(addUser(res.data.user));
 
   } catch (error) {
-    console.log("FETCH USER ERROR:", error);
+    navigate("/login");
   }
 };
 

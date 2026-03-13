@@ -62,10 +62,10 @@ authRouter.post("/login",async(req,res)=>{
     if(isPasswordValid){
  
        const token=await user.validatetoken()
-      res.cookie("token", token, {
+     res.cookie("token", token, {
   httpOnly: true,
-  secure: true,
-  sameSite: "none",
+  sameSite: "lax",
+  secure: false
 });
         res.status(200).json({
       success: true,
