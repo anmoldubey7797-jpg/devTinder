@@ -39,7 +39,7 @@ const Requests = () => {
     if(!requests) return <h1>Loading....</h1>
 
     if (requests.length === 0)
-    return <h1>No Requests Found Beta Jii 😄</h1>
+    return <h1 className='text-4xl text-black py-20'>No Requests  Avilable Here 😄</h1>
   return (
     <div className="p-6 text-white">
   <h1 className="text-2xl text-gray-800 font-bold mb-6 p-2">

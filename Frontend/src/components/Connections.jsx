@@ -34,7 +34,7 @@ const Connections = () => {
   if (!connections) return <h1>Loading...</h1>
 
   if (connections.length === 0)
-    return <h1 className='text-4xl text-black'>No connection Found Please Make True Frendship 😄</h1>
+    return <h1 className='text-4xl text-black py-20'>No connection Found Please Make True Friends 😄</h1>
 
   return (
     <div className=" min-h-screen p-6 text-white">
