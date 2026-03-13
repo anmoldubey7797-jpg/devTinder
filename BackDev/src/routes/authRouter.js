@@ -1,5 +1,5 @@
 import express from "express";
-const authRouter=express();
+const authRouter=express.Router();
 import authUser from "../middlewares/auth.middleware.js";
 
 import validateSignUp from "../utils/validation.js";
@@ -31,9 +31,13 @@ authRouter.post("/signup",async(req,res)=>{
     message: "User already exists with this email",
   });
   }
-     const savedUser=await user.save();
-      const token=await user.validatetoken()
-       res.cookie("token",token)
+     const savedUser = await user.save();
+const token = await savedUser.validatetoken()
+     res.cookie("token", token, {
+  httpOnly: true,
+  sameSite: "lax",
+  secure: false
+});
      return res.status(201).json({success:true,message:"User Added successfully",data:savedUser})
     }
     catch(error){
@@ -58,7 +62,11 @@ authRouter.post("/login",async(req,res)=>{
     if(isPasswordValid){
  
        const token=await user.validatetoken()
-       res.cookie("token",token)
+      res.cookie("token", token, {
+  httpOnly: true,
+  sameSite: "lax",
+  secure: false
+});
         res.status(200).json({
       success: true,
       user: user,

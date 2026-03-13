@@ -50,7 +50,9 @@ userRouter.get("/user/connections", authUser, async (req, res) => {
       uniqueUsers.set(otherUser._id.toString(), otherUser);
     });
 
-    const data = Array.from(uniqueUsers.values());
+    const data = Array.from(uniqueUsers.values()).filter(
+  (user) => user._id.toString() !== loggedInUser._id.toString()
+);
 
     return res.json({
       message: "User make Connection easily",

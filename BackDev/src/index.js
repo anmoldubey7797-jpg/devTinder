@@ -23,13 +23,15 @@ import authRouter from "../src/routes/authRouter.js";
 import profileRouter from "../src/routes/profileRouter.js";
 import requestRouter from "../src/routes/request.js";
 import userRouter from "./routes/user.js";
-import initializeSocket from "./utils/socket.js";
+import chatRouter from "./routes/chat.js";
+
 
 
 app.use("/",authRouter)
 app.use("/",profileRouter)
 app.use("/",requestRouter)
 app.use("/",userRouter)
+app.use("/",chatRouter)
 
 const server=http.createServer(app);
 initializeSocket(server);
